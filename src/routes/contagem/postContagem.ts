@@ -10,6 +10,8 @@ const bodySchema = z.object({
 export async function postContagem(req: FastifyRequest, reply: FastifyReply){
     const { codigoBarras } = bodySchema.parse(req.body);
 
+    console.log('codigobarras => ', codigoBarras)
+
     const query = {
         text: /*sql*/`
             SELECT
