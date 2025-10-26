@@ -4,7 +4,7 @@ import postgresHelper from "../../helpers/postgresHelper.js";
 import { io } from "../../server.js"; // importamos o Socket.IO
 
 const bodySchema = z.object({
-    codigoBarras: z.string()
+    codigoBarras: z.coerce.number()
 });
 
 export async function postContagem(req: FastifyRequest, reply: FastifyReply){
@@ -17,7 +17,7 @@ export async function postContagem(req: FastifyRequest, reply: FastifyReply){
                 nome,
                 estoqueatual
             FROM produtos
-            WHERE codigobarras = $1
+            WHERE id = $1
         `,
         values: [codigoBarras]
     };
